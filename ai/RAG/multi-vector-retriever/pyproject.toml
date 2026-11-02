@@ -2,7 +2,7 @@
 name = "multi-vector-retriever"
 version = "0.0.1"
 description = "Multi-vector retriever for RAG"
-authors = ["Your Name <you@example.com>"]
+authors = ["Iosif Trefas <iosif.tre@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 package-mode = false

@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  postgres-mvr:
+    image: pgvector/pgvector:pg16
+    container_name: pgvector-mvr
+    environment:
+      POSTGRES_USER: langchain
+      POSTGRES_PASSWORD: langchain
+      POSTGRES_DB: langchain
+    ports:
+      - "6024:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin-mvr:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-mvr
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-mvr
+    restart: unless-stopped
+
+  # redis:
+  #   image: redis/redis-stack:latest
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   restart: unless-stopped
+
+  # redisinsight:
+  #   image: redis/redisinsight:latest
+  #   ports:
+  #     - "5540:5540"
+  #   depends_on:
+  #     - redis
+  #   restart: unless-stopped
+
+volumes:
+  postgres_data:
